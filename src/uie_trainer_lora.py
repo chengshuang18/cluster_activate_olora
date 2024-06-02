@@ -439,7 +439,7 @@ class UIETrainer(Seq2SeqTrainer):
                     _ = list(sampler)
 
         total_batched_samples = 0
-        temporal_activation = {}
+        temporal_activation_sum = {}
         cluster_indice = None
         if args.method == "cluster_activate" and args.is_first_task == False:
             import utils_local
@@ -447,35 +447,33 @@ class UIETrainer(Seq2SeqTrainer):
             from olora.tuners.lora import Linear
             # cluster_indice = utils_local.get_cluster_indice(model, args)
             if args.cluster_constructure_method == "weight_cluster":
-                cluster_indice = utils_local.get_cluster_indices_multiprocessing(model, args)
+                raise ValueError("The specified cluster construction method 'weight_cluster' is not supported.")
+                cluster_indice = utils_local.get_cluster_indices_combined(model, args)
             elif  args.cluster_constructure_method == "weight_cluster_combined":
                 # cluster_indice = utils_local.get_cluster_indices_combined_multiprocessing(model, args)
                 cluster_indice = utils_local.get_cluster_indices_combined(model, args)
             elif args.cluster_constructure_method == "co-activation":
-                self._train_batch_size = 8
+                self._train_batch_size = 1
                 calib_dataloader = self.get_train_dataloader()
                 cluster_indice = utils_local.get_cluster_indices_co_activation(self, model, calib_dataloader, args)
-                
-            def hook_fn(module, input, output, name):
-                module_input_key = f"{name}_input"
-                module_output_key = f"{name}_output"
-                if module_input_key not in temporal_activation:
-                    temporal_activation[module_input_key] = []
-                if module_output_key not in temporal_activation:
-                    temporal_activation[module_output_key] = []
 
-                temporal_activation[module_input_key].append(input[0].detach())
-                temporal_activation[module_output_key].append(output.detach())
+            def hook_fn(module, input, output, name):
+                hidden_dim = output.shape[-1]
+                if name not in temporal_activation_sum:
+                    temporal_activation_sum[name] = torch.sum(output.reshape(-1, hidden_dim).abs(), dim=0)
+                else:
+                    temporal_activation_sum[name] += torch.sum(output.reshape(-1, hidden_dim).abs(), dim=0)
+
 
             for name, module in model.named_modules():
-                if "loranew_A.default" in name or "loranew_B.default" in name or isinstance(module, Linear):
+                if "loranew_A.default" in name or isinstance(module, Linear):
                     module._forward_hooks.clear()
                     module.register_forward_hook(
                         lambda module, input, output, name=name: hook_fn(module, input, output, name)
                     )
                     print(f"register hooks for {name}")
 
-        
+
         for epoch in range(epochs_trained, num_train_epochs):
             epoch_iterator = train_dataloader
             if hasattr(epoch_iterator, "set_epoch"):
@@ -542,7 +540,7 @@ class UIETrainer(Seq2SeqTrainer):
                     self.control = self.callback_handler.on_step_begin(args, self.state, self.control)
 
                 with self.accelerator.accumulate(model):
-                    tr_loss_step = self.training_step(model, inputs, temporal_activation, self.args.method,
+                    tr_loss_step = self.training_step(model, inputs, temporal_activation_sum, self.args.method,
                                                       self.args.is_first_task, self.args.cluster_constructure_method,
                                                       self.args.activation_combined,
                                                       self.args.n_clusters, cluster_indice, self.args.ini_threshold)
@@ -609,8 +607,8 @@ class UIETrainer(Seq2SeqTrainer):
 
                     # Optimizer step
                     self.optimizer.step()
-                    # 对于新的 step， 重置 temporal_activation
-                    temporal_activation = {}
+                    # 对于新的 step， 重置 temporal_activation_sum
+                    temporal_activation_sum = {}
                     optimizer_was_run = not self.accelerator.optimizer_step_was_skipped
                     if optimizer_was_run:
                         # Delay optimizer scheduling until metrics are generated
@@ -717,7 +715,7 @@ class UIETrainer(Seq2SeqTrainer):
         return TrainOutput(self.state.global_step, train_loss, metrics)
 
     def training_step(self, model: nn.Module, inputs: Dict[str, Union[torch.Tensor, Any]],
-                      temporal_activation, method, is_first_task, cluster_constructure_method,
+                      temporal_activation_sum, method, is_first_task, cluster_constructure_method,
                       activation_combined, n_clusters, cluster_indice, ini_threshold) -> torch.Tensor:
         """
         Perform a training step on a batch of inputs.
@@ -749,35 +747,30 @@ class UIETrainer(Seq2SeqTrainer):
         if self.args.n_gpu > 1:
             loss = loss.mean()  # mean() to average on multi-gpu parallel training
 
-        ########################### Regularization ##########################
-        # orthogonal_loss = torch.tensor(0., device=loss.device)
+        ########################## Regularization ##########################
+        orthogonal_loss = torch.tensor(0., device=loss.device)
         # if self.args.method == "olora":
-        #     for name, param in self.model.named_parameters():
-        #         if "lora_A" in name:
-        #             for name_, param_ in self.model.named_parameters():
-        #                 if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
-        #                     orthogonal_loss += torch.abs(torch.mm(param, param_.T)).sum() # [r * dim] * [dim * r]
-        #                     break # target modules have been matched
+        for name, param in self.model.named_parameters():
+            if "lora_A" in name:
+                for name_, param_ in self.model.named_parameters():
+                    if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
+                        orthogonal_loss += torch.abs(torch.mm(param, param_.T)).sum() # [r * dim] * [dim * r]
+                        break # target modules have been matched
 
-        # # l2-normalization for loranew_A/B
-        # l2_loss = 0.
-        # for name, param in self.model.named_parameters():
-        #     if "lora_" in name:
-        #         l2_loss += torch.norm(param, p=2)
-
-        # lamda = self.args.lamda
-
-        # # logger.info(f"l2_loss: {l2_loss.item()}; accuracy_loss: {loss.item()}; λ2: {lamda}")
-        # # loss = loss + l2_loss * lamda
+        # l2-normalization for loranew_A/B
+        l2_loss = 0.
+        for name, param in self.model.named_parameters():
+            if "loranew_" in name:
+                l2_loss += torch.norm(param, p=2)
         
-        # logger.info(f"orthogonal_loss: {orthogonal_loss.item()}; l2_loss: {l2_loss.item()}; accuracy_loss: {loss.item()}; λ1: {lamda}; λ2: {lamda}")
-        # loss = loss + orthogonal_loss * lamda + l2_loss * lamda
+        logger.info(f"orthogonal_loss: {orthogonal_loss.item()}; l2_loss: {l2_loss.item()}; accuracy_loss: {loss.item()}; λ1: {self.args.lamda_1}; λ2: {self.args.lamda_2}")
+        loss = loss + orthogonal_loss * self.args.lamda_1 + l2_loss * self.args.lamda_2
         
         if self.use_apex:
             with amp.scale_loss(loss, self.optimizer) as scaled_loss:
                 scaled_loss.backward()
         else:
-            self.accelerator.backward(loss, activation=temporal_activation, method=method,
+            self.accelerator.backward(loss, activation=temporal_activation_sum, method=method,
                                       is_first_task=is_first_task, n_clusters=n_clusters,
                                       ini_threshold=ini_threshold, cluster_indice=cluster_indice,
                                       activation_combined=activation_combined,

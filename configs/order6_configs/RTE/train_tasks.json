@@ -4,16 +4,16 @@
     "TC": [
     ],
     "NLI": [   
+        {
+            "sampling strategy": "full",
+            "dataset name": "RTE"
+        } 
     ],
     "QQP": [ 
     ],
     "WiC": [ 
     ],
     "MultiRC": [ 
-        {
-            "sampling strategy": "full",
-            "dataset name": "MultiRC"
-        }
     ],
     "COPA": [
     ],

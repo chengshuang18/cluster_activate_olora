@@ -240,7 +240,8 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
         metadata={"help": "If specifid, the model will do more evaluation at the beginning of training."}
     )
     do_demo: bool = field(default=False, metadata={"help": "Whether to run the model as a demo in the terminal."})
-    lamda: float = field(default = 0)
+    lamda_1: float = field(default = 0)
+    lamda_2: float = field(default = 0)
     method: str = field(
         default="cluster_activate", metadata={"help": "the different method name, default is olora"}
     )

@@ -6,14 +6,14 @@
     "NLI": [   
     ],
     "QQP": [ 
+        {
+            "sampling strategy": "full",
+            "dataset name": "QQP"
+        } 
     ],
     "WiC": [ 
     ],
     "MultiRC": [ 
-        {
-            "sampling strategy": "full",
-            "dataset name": "MultiRC"
-        }
     ],
     "COPA": [
     ],

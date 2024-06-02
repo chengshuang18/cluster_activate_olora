@@ -10,12 +10,12 @@
     "WiC": [ 
     ],
     "MultiRC": [ 
-        {
-            "sampling strategy": "full",
-            "dataset name": "MultiRC"
-        }
     ],
     "COPA": [
+        {
+            "sampling strategy": "full",
+            "dataset name": "COPA"
+        } 
     ],
     "BoolQA": [
     ]

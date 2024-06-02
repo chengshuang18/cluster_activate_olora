@@ -2,6 +2,10 @@
     "SC": [
     ],
     "TC": [
+        {
+            "sampling strategy": "full",
+            "dataset name": "agnews"
+        } 
     ],
     "NLI": [   
     ],
@@ -10,10 +14,6 @@
     "WiC": [ 
     ],
     "MultiRC": [ 
-        {
-            "sampling strategy": "full",
-            "dataset name": "MultiRC"
-        }
     ],
     "COPA": [
     ],

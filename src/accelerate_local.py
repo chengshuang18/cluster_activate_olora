@@ -20,21 +20,16 @@ def compute_importance_mask(activation, ini_threshold, n_cluster, method, cluste
     """Compute the importance mask based on the provided method."""
     # activation, kwargs['ini_threshold'], kwargs['cluster_constructure_method'], cluster_indice
     device = activation[0].device
-    hidden_dim = activation[0].shape[-1]
-    activation = torch.cat([item.reshape(-1, hidden_dim) for item in activation], dim=0)
-    importance = torch.mean(activation.abs(), dim=0)
-
-    dist.barrier()
-    dist.all_reduce(importance, op=dist.ReduceOp.AVG)
-
-    threshold = torch.quantile(importance, ini_threshold)
-    importance_mask = (importance > threshold).float().to(device)
-
+    hidden_dim = activation.shape[-1]
+    # activation = torch.cat([item.reshape(-1, hidden_dim) for item in activation], dim=0)
+    # importance = torch.mean(activation.abs(), dim=0)
+    # dist.barrier()
+    dist.all_reduce(activation, op=dist.ReduceOp.AVG)
     if method == 'sequential':
-        importance_chunks = importance.chunk(n_cluster)
-        importance = torch.stack([chunk.sum() for chunk in importance_chunks])
-        threshold = torch.quantile(importance, ini_threshold)
-        importance_mask = (importance > threshold).float().to(device)
+        activation_chunks = activation.chunk(n_cluster)
+        activation = torch.stack([chunk.sum() for chunk in activation_chunks])
+        threshold = torch.quantile(activation, ini_threshold)
+        importance_mask = (activation > threshold).float().to(device)
         assert hidden_dim % n_cluster ==0, "hidden_dim must be divisible by n_cluster."
         importance_mask = importance_mask.repeat_interleave(hidden_dim // n_cluster)
     elif method == 'weight_cluster' or method == 'weight_cluster_combined' \
@@ -47,15 +42,17 @@ def compute_importance_mask(activation, ini_threshold, n_cluster, method, cluste
         # importance_mask = torch.index_select(cluster_mask, 0, cluster_indice)
 
         cluster_indice = torch.tensor(cluster_indice, dtype=torch.int64, device=device)
-        cluster_sums = torch.zeros(n_cluster, dtype=importance.dtype, device=device)
-        cluster_sums.index_add_(0, cluster_indice, importance)
+        cluster_sums = torch.zeros(n_cluster, dtype=activation.dtype, device=device)
+        cluster_sums.index_add_(0, cluster_indice, activation)
         importance_mask = cluster_sums[cluster_indice]
         # importance_mask = torch.zeros_like(importance)
         # for i in range(importance_mask.shape[0]):
         #     importance_mask[i] = cluster_sums[cluster_indice[i]]
         threshold = torch.quantile(importance_mask, ini_threshold)
         importance_mask = (importance_mask > threshold).float().to(device)
-
+    else:
+        threshold = torch.quantile(activation, ini_threshold)
+        importance_mask = (activation > threshold).float().to(device)
     return importance_mask
 
 def backward(self, loss, **kwargs):
@@ -82,9 +79,9 @@ def backward(self, loss, **kwargs):
                 if "loranew_A" in name:
                     # activation, ini_threshold, n_cluster, method, cluster_indice
                     importance_mask = compute_importance_mask(activation, ini_threshold, None, None, None)
-                    module_name = name[:-7]
+                    module_name = name
                 elif ("loranew_B" not in name) == activation_combined:
-                    module_name = name[:-7] + ".loranew_B.default" if activation_combined else name[:-7]
+                    module_name = name + ".loranew_B.default" if activation_combined else name
                     if cluster_constructure_method == "sequential":
                         importance_mask = compute_importance_mask(activation, ini_threshold, n_clusters,
                                                                   cluster_constructure_method, None)

@@ -111,9 +111,9 @@ def get_cluster_indices_combined(model, args):
         for name, module in model.named_modules():
             if isinstance(module, Linear):
                 # TODO merge
-                combined_weight = module.weight + torch.matmul(module.loranew_A['default'].weight.T, module.loranew_B['default'].weight.T).T * module.scaling['default'] + torch.matmul(module.lora_A['default'].weight.T, module.lora_B['default'].weight.T).T * module.scaling['default']
+                combined_weight = module.weight + torch.matmul(module.lora_A['default'].weight.T, module.lora_B['default'].weight.T).T * module.scaling['default'] + torch.matmul(module.loranew_A['default'].weight.T, module.loranew_B['default'].weight.T).T * module.scaling['default'] ## 理论上 loranew_A 和loranew_B 的乘积是 0，不需要做加法
                 combined_weight = F.normalize(combined_weight.detach(), p=2, dim=0).cpu().numpy()
-                module_info.append((name+".loranew_B.default", combined_weight))
+                module_info.append((name + ".loranew_B.default", combined_weight))
         print("step one finished on rank 0!")
         # Create a pool of processes and map cluster_module function to each module
         results = []
@@ -125,7 +125,7 @@ def get_cluster_indices_combined(model, args):
         print(f"Clustering completed in {end_time - start_time:.2f} seconds on rank 0.")
         # Convert list of tuples to dictionary
         cluster_indices = {name: labels for name, labels in results}
-    
+
     # Synchronize cluster_indices to all ranks
     dist.barrier()
     for name, module in model.named_modules():

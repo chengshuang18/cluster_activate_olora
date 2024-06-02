@@ -8,12 +8,12 @@
     "QQP": [ 
     ],
     "WiC": [ 
-    ],
-    "MultiRC": [ 
         {
             "sampling strategy": "full",
-            "dataset name": "MultiRC"
-        }
+            "dataset name": "WiC"
+        } 
+    ],
+    "MultiRC": [ 
     ],
     "COPA": [
     ],
