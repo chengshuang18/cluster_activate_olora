@@ -24,8 +24,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/1-multirc \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -63,8 +63,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/2-boolqa \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -106,8 +106,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/3-wic \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 2 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -149,8 +149,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/4-mnli \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -192,8 +192,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/5-cb \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -235,8 +235,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/6-copa \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -278,8 +278,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/7-qqp \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -321,8 +321,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/8-rte \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -364,8 +364,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/9-imdb \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -407,8 +407,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/10-sst-2 \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -450,8 +450,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/11-dbpedia \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -493,8 +493,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/12-agnews \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -536,8 +536,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/13-yelp \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -579,8 +579,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/14-amazon \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -622,8 +622,8 @@ CUDA_VISIBLE_DEVICES=0,1 deepspeed --master_port 25000 src/run_uie_lora.py \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_5/outputs/15-yahoo \
    --per_device_train_batch_size 8 \
-   --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
