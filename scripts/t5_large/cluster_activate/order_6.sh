@@ -14,7 +14,7 @@ activation_combined=$4
  
 # bash scripts/order_6.sh > output/${model}/${method}/${cluster_constructure_method}/order_6/logs/train_and_infer.log 2>&1
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -26,7 +26,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/1-yelp \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -45,13 +45,14 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task True
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -63,7 +64,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/2-amazon \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -82,7 +83,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -92,7 +94,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -104,7 +106,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/3-MNLI \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 2 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -123,7 +125,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -133,7 +136,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -145,7 +148,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/4-CB \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -164,7 +167,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -174,7 +178,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -186,7 +190,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/5-COPA \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -205,17 +209,18 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
    --cluster_constructure_method ${cluster_constructure_method} \
    --ini_threshold ${ini_threshold} \
-   --activation_combined ${activation_combined}.1 
+   --activation_combined ${activation_combined}
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -227,7 +232,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/6-QQP \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -246,17 +251,18 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
    --cluster_constructure_method ${cluster_constructure_method} \
    --ini_threshold ${ini_threshold} \
-   --activation_combined ${activation_combined}.1 
+   --activation_combined ${activation_combined}
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -268,7 +274,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/7-RTE \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -287,17 +293,18 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.3 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
    --cluster_constructure_method ${cluster_constructure_method} \
    --ini_threshold ${ini_threshold} \
-   --activation_combined ${activation_combined}.3 
+   --activation_combined ${activation_combined}
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -309,7 +316,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/8-IMDB \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -328,7 +335,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -338,7 +346,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -350,7 +358,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/9-SST-2 \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -369,17 +377,18 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
    --cluster_constructure_method ${cluster_constructure_method} \
    --ini_threshold ${ini_threshold} \
-   --activation_combined ${activation_combined}.1
+   --activation_combined ${activation_combined}
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -391,7 +400,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/10-dbpedia \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -410,7 +419,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -420,7 +430,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -432,7 +442,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/11-agnews \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -451,7 +461,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -461,7 +472,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -473,7 +484,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/12-yahoo \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -492,7 +503,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -502,7 +514,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -514,7 +526,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/13-MultiRC \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -533,7 +545,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -543,7 +556,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -555,7 +568,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/14-BoolQA \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -574,7 +587,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -584,7 +598,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
 
 sleep 5
 
-deepspeed --master_port 25000 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -596,7 +610,7 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/15-WiC \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -615,7 +629,8 @@ deepspeed --master_port 25000 src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.3 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \

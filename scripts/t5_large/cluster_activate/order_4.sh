@@ -24,7 +24,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/1-mnli \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -43,7 +43,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task True
 
@@ -61,7 +62,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/2-cb \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -80,7 +81,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -102,7 +104,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/3-wic \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -121,7 +123,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --lora_dim 8 \
    --method ${method} \
    --is_first_task False \
@@ -144,7 +147,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/4-copa \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -163,7 +166,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -185,7 +189,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/5-qqp \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -204,7 +208,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -226,7 +231,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/6-boolqa \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -245,7 +250,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -267,7 +273,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/7-rte \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -286,7 +292,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.3 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -308,7 +315,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/8-imdb \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -327,7 +334,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -349,7 +357,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/9-yelp \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -368,7 +376,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 0.5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -390,7 +399,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/10-amazon \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -409,7 +418,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -431,7 +441,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/11-sst-2 \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -450,7 +460,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -472,7 +483,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/12-dbpedia \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -491,7 +502,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -513,7 +525,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/13-agnews \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -532,7 +544,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -554,7 +567,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/14-multirc \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -573,7 +586,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.1 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
@@ -595,7 +609,7 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/15-yahoo \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 4 \
+   --gradient_accumulation_steps 1 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -614,7 +628,8 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --evaluation_strategy no \
    --save_strategy no \
    --save_steps 1500 \
-   --lamda 0 \
+   --lamda_1 5 \
+   --lamda_2 0.3 \
    --method ${method} \
    --is_first_task False \
    --n_clusters $cluster \
