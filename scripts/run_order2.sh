@@ -1,7 +1,7 @@
 # !/bin/bash
 
-clusters=(32 16 8 64)
-ini_thresholds=(0.66 0.75 0.85 0 0.5 0.0 0.4 0.3 0.1)
+clusters=(32 16 64)
+ini_thresholds=(0.0 0.5 0.4 0.3 0.2)
 cluster_constructure_methods=("sequential")
 activation_combined=True
 method="cluster_activate"

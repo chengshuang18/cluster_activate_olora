@@ -22,9 +22,9 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_2/outputs/1-dbpedia \
-   --per_device_train_batch_size 32 \
+   --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -60,9 +60,9 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_2/outputs/2-amazon \
-   --per_device_train_batch_size 32 \
+   --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -102,9 +102,9 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_2/outputs/3-agnews \
-   --per_device_train_batch_size 32 \
+   --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
@@ -144,9 +144,9 @@ deepspeed --master_port $port src/run_uie_lora.py \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir output/${model}/${method}/${cluster_constructure_method}/order_2/outputs/4-yahoo \
-   --per_device_train_batch_size 32 \
+   --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 128 \
-   --gradient_accumulation_steps 1 \
+   --gradient_accumulation_steps 4 \
    --learning_rate 1e-03 \
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage0.config \
