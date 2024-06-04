@@ -1,8 +1,8 @@
 # !/bin/bash
 
-clusters=(32 16 8 64)
-ini_thresholds=(0.66 0.75 0.85)
-cluster_constructure_methods=("co-activation")
+clusters=(32 16 64)
+ini_thresholds=(0.1 0.2 0.3 0.4)
+cluster_constructure_methods=("weight_cluster_combined")
 activation_combined=True
 method="cluster_activate"
 model="t5_large"
