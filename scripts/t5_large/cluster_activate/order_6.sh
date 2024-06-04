@@ -14,7 +14,7 @@ activation_combined=$4
  
 # bash scripts/order_6.sh > output/${model}/${method}/${cluster_constructure_method}/order_6/logs/train_and_infer.log 2>&1
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -52,7 +52,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -94,7 +94,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -136,7 +136,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -178,7 +178,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -220,7 +220,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -262,7 +262,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -304,7 +304,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -346,7 +346,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -388,7 +388,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -430,7 +430,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -472,7 +472,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -514,7 +514,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -556,7 +556,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
@@ -598,7 +598,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_l
 
 sleep 5
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
+deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
    --do_predict \
    --predict_with_generate \
