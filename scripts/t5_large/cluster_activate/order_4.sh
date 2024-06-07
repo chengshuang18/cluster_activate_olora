@@ -16,7 +16,6 @@ seed=$5
 # 1-mnli
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path initial_model/${model} \
    --data_dir CL_Benchmark \
@@ -55,7 +54,6 @@ sleep 5
 # 2-cb
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/1-mnli/adapter \
    --data_dir CL_Benchmark \
@@ -98,7 +96,6 @@ sleep 5
 # 3-wic
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/2-cb/adapter \
    --data_dir CL_Benchmark \
@@ -142,7 +139,6 @@ sleep 5
 # 4-copa
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/3-wic/adapter \
    --data_dir CL_Benchmark \
@@ -185,7 +181,6 @@ sleep 5
 # 5-qqp
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/4-copa/adapter \
    --data_dir CL_Benchmark \
@@ -228,7 +223,6 @@ sleep 5
 # 6-boolqa
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/5-qqp/adapter \
    --data_dir CL_Benchmark \
@@ -271,7 +265,6 @@ sleep 5
 # 7-rte
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/6-boolqa/adapter \
    --data_dir CL_Benchmark \
@@ -314,7 +307,6 @@ sleep 5
 # 8-imdb
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/7-rte/adapter \
    --data_dir CL_Benchmark \
@@ -357,7 +349,6 @@ sleep 5
 # 9-yelp
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/8-imdb/adapter \
    --data_dir CL_Benchmark \
@@ -400,7 +391,6 @@ sleep 5
 # 10- amazon
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/9-yelp/adapter \
    --data_dir CL_Benchmark \
@@ -443,7 +433,6 @@ sleep 5
 # 11-sst-2
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/10-amazon/adapter \
    --data_dir CL_Benchmark \
@@ -486,7 +475,6 @@ sleep 5
 # 12-dbpedia
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/11-sst-2/adapter \
    --data_dir CL_Benchmark \
@@ -529,7 +517,6 @@ sleep 5
 # 13-ag
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/12-dbpedia/adapter \
    --data_dir CL_Benchmark \
@@ -572,7 +559,6 @@ sleep 5
 # 14-multirc
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_4/outputs/13-agnews/adapter \
    --data_dir CL_Benchmark \

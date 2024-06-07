@@ -17,7 +17,6 @@ seed=$5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path initial_model/${model} \
    --data_dir CL_Benchmark \
@@ -57,7 +56,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/1-yelp/adapter \
    --data_dir CL_Benchmark \
@@ -101,7 +99,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/2-amazon/adapter \
    --data_dir CL_Benchmark \
@@ -145,7 +142,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/3-MNLI/adapter \
    --data_dir CL_Benchmark \
@@ -189,7 +185,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/4-CB/adapter \
    --data_dir CL_Benchmark \
@@ -233,7 +228,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/5-COPA/adapter \
    --data_dir CL_Benchmark \
@@ -277,7 +271,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/6-QQP/adapter \
    --data_dir CL_Benchmark \
@@ -321,7 +314,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/7-RTE/adapter \
    --data_dir CL_Benchmark \
@@ -365,7 +357,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/8-IMDB/adapter \
    --data_dir CL_Benchmark \
@@ -409,7 +400,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/9-SST-2/adapter \
    --data_dir CL_Benchmark \
@@ -453,7 +443,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/10-dbpedia/adapter \
    --data_dir CL_Benchmark \
@@ -497,7 +486,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/11-agnews/adapter \
    --data_dir CL_Benchmark \
@@ -541,7 +529,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/12-yahoo/adapter \
    --data_dir CL_Benchmark \
@@ -585,7 +572,6 @@ sleep 5
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port 25000 src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_6/outputs/13-MultiRC/adapter \
    --data_dir CL_Benchmark \

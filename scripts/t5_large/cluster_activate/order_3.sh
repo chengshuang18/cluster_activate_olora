@@ -15,7 +15,6 @@ seed=$5
 
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path initial_model/${model} \
    --data_dir CL_Benchmark \
@@ -54,7 +53,6 @@ sleep 5
 
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_3/outputs/1-yahoo/adapter \
    --data_dir CL_Benchmark \
@@ -97,7 +95,6 @@ sleep 5
 
 deepspeed --master_port $port src/run_uie_lora.py \
    --do_train \
-   --do_predict \
    --predict_with_generate \
    --model_name_or_path output/${model}/${method}/${cluster_constructure_method}/order_3/outputs/2-amazon/adapter \
    --data_dir CL_Benchmark \
