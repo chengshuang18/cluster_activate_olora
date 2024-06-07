@@ -1,6 +1,6 @@
-# source /workspace/S/zhangyang/miniconda3/bin/activate cluster_lora
-# conda info -e
-# cd /lustre/S/zhangyang/chengshuang/CL/cluster_activate_lora
+source /workspace/S/zhangyang/miniconda3/bin/activate cluster_olora
+conda info -e
+cd /lustre/S/zhangyang/chengshuang/CL/cluster_activate_olora
 
 
 echo "bash scripts/run_order2.sh"

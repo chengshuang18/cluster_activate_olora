@@ -1,14 +1,14 @@
 # !/bin/bash
 
-clusters=(32 16 8 64)
-ini_thresholds=(0.66 0.75 0.85)
-cluster_constructure_methods=("co-activation")
+clusters=(32 16 64)
+ini_thresholds=(0.2 0.3 0.1 0.0 0.4)
+cluster_constructure_methods=("sequential")
 activation_combined=True
 method="cluster_activate"
 model="t5_large"
 for cluster_constructure_method in "${cluster_constructure_methods[@]}"; do
-  for ini_threshold in "${ini_thresholds[@]}"; do
-    for cluster in "${clusters[@]}"; do
+  for cluster in "${clusters[@]}"; do  
+    for ini_threshold in "${ini_thresholds[@]}"; do
         lor_dir=output/${model}/${method}/${cluster_constructure_method}/order_4/logs
         log_path=${lor_dir}/train_and_infer_${cluster}_${ini_threshold}_${activation_combined}.log
         mkdir -p ${lor_dir}
